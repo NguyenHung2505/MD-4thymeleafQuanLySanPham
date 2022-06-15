@@ -3,10 +3,7 @@ package controller;
 import model.Product;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import service.IProductService;
 import service.ProductService;
@@ -64,12 +61,9 @@ import java.util.List;
             return "/view";
         }
 
-//        @GetMapping("/seach")
-//        public String seach(@PathVariable int id, Model model) {
-//            model.addAttribute("product", iProductService.findById(id));
-//            return "/seach";
-//        }
-
-
-
+        @GetMapping("/seach")
+        public String find(@RequestParam String name, Model model) {
+            model.addAttribute("find", iProductService.findByName(name));
+            return "/seach";
+        }
     }
